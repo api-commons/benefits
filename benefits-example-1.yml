@@ -1,0 +1,72 @@
+# API Commons — Benefits, illustrative example
+#
+# The benefits an embedded-integration platform on example.com claims. This is the
+# shape a real benefits page takes: a list of outcomes, mostly unqualified.
+#
+# What the schema adds is the last three fields. Read down the `metric` column and the
+# claims that cannot be checked stand out on their own — which is the point. Two entries
+# here deliberately have no metric and no evidence, because real pages are like that.
+
+- name: Deliver integrations faster
+  description: Ship a customer-requested integration in days rather than quarters.
+  url: https://example.com/benefits
+  audience: developer
+  category: speed
+  metric: calendar days from integration request to production deployment
+  evidence_url: https://example.com/case-studies/integration-velocity
+  features:
+    - Integration designer
+    - Connector library
+
+- name: Free up developer time
+  description: Move integration maintenance off the product roadmap.
+  url: https://example.com/benefits
+  audience: product
+  category: cost
+  metric: engineer-days per quarter spent on integration maintenance
+  features:
+    - Managed connectors
+    - Integration monitoring
+
+- name: Reduce onboarding time
+  description: Get a new customer's integrations live without a services engagement.
+  url: https://example.com/benefits
+  audience: business
+  category: speed
+  metric: days from contract signature to first successful customer integration
+  evidence_url: https://example.com/case-studies/onboarding
+
+- name: Reduce support load
+  description: Fewer integration tickets reaching the support team.
+  url: https://example.com/benefits
+  audience: operations
+  category: cost
+  metric: integration-related support tickets per 100 active customers per month
+
+- name: Offload integration security
+  description: Credential storage, rotation, and scoping handled by the platform.
+  url: https://example.com/benefits
+  audience: security
+  category: risk
+  metric: number of third-party credentials stored in first-party systems
+  note: >-
+    Offloading is not elimination — it moves the credentials to a different trust
+    boundary. Worth stating, because this claim is routinely read as the stronger one.
+
+- name: Empower non-developers
+  description: Let solutions and support staff build integrations without engineering.
+  url: https://example.com/benefits
+  audience: business
+  category: reach
+  features:
+    - Low-code designer
+  note: >-
+    No metric. The claim is real but nobody has defined what would count as evidence,
+    and recording that is more useful than inventing a number.
+
+- name: Fits the way you build software
+  url: https://example.com/benefits
+  audience: developer
+  note: >-
+    No description, no metric, no evidence. A slogan. Left in deliberately — the schema's
+    job is to make this legible, not to hide it.

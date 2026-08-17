@@ -1,0 +1,134 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://raw.githubusercontent.com/api-commons/benefits/main/benefits-json-schema.yml
+title: API Commons Benefits
+description: >-
+  A machine-readable list of the outcomes an API claims to produce for the people who
+  adopt it — not what it does, but what changes for them. This is the schema behind the
+  Benefits property in API Commons.
+
+  Benefits are the softest thing an API publishes and the first thing a buyer reads.
+  Making them machine-readable is not an attempt to make marketing rigorous; it is an
+  attempt to make it accountable. The `audience`, `metric` and `evidence_url` fields
+  exist so that a claim states who it is for, what would have to move for it to be true,
+  and whether anyone has shown that it did. A benefit with none of those is a slogan,
+  and the schema lets you see that at a glance rather than argue about it.
+
+oneOf:
+  - title: Benefits document
+    description: A bare list of benefits — a standalone benefits file.
+    type: array
+    minItems: 1
+    items:
+      $ref: '#/$defs/benefit'
+  - title: Benefits properties
+    description: >-
+      One or more Benefits properties as they appear inside an apis.yml / apis.json
+      index, each carrying its benefits under `data`.
+    type: array
+    minItems: 1
+    items:
+      $ref: '#/$defs/benefitsProperty'
+
+$defs:
+
+  benefitsProperty:
+    type: object
+    additionalProperties: false
+    required:
+      - type
+      - data
+    properties:
+      name:
+        type: string
+        description: The name of the property as it appears in the index.
+      type:
+        const: Benefits
+        description: The API Commons property type. Always Benefits.
+      description:
+        type: string
+        description: What this list covers.
+      url:
+        type: string
+        format: uri
+        description: The provider page this was read from.
+      source_date:
+        type: string
+        format: date
+        description: The date this was last verified against that page.
+      data:
+        type: array
+        minItems: 1
+        description: The benefits themselves.
+        items:
+          $ref: '#/$defs/benefit'
+
+  benefit:
+    type: object
+    additionalProperties: false
+    required:
+      - name
+    properties:
+
+      name:
+        type: string
+        minLength: 1
+        description: >-
+          The claimed outcome, stated as a change rather than a capability. "Reduce
+          onboarding time", not "onboarding API".
+
+      description:
+        type: string
+        description: What the claim actually means, in a sentence.
+
+      url:
+        type: string
+        format: uri
+        description: The page making this claim.
+
+      audience:
+        description: >-
+          Who the benefit accrues to. A claim that does not name its audience is usually
+          being made to everyone and landing with no one — and the same API often
+          benefits a developer and a buyer in opposite directions.
+        enum:
+          - developer
+          - architect
+          - product
+          - business
+          - operations
+          - security
+          - compliance
+          - partner
+          - end-user
+
+      category:
+        type: string
+        description: A grouping for the benefit — speed, cost, risk, reach, experience.
+
+      metric:
+        type: string
+        description: >-
+          The thing that would have to move for this claim to be true — the measure, not
+          the number. For example "days from signup to first successful call". A benefit
+          with no metric is not falsifiable, which is worth knowing.
+
+      evidence_url:
+        type: string
+        format: uri
+        description: >-
+          A case study, benchmark, or report substantiating the claim. Its absence is
+          informative; do not invent one.
+
+      features:
+        type: array
+        minItems: 1
+        uniqueItems: true
+        description: >-
+          The feature names this benefit rests on, matching the Features property. Links
+          the claim to the thing that supposedly delivers it.
+        items:
+          type: string
+
+      note:
+        type: string
+        description: Caveats, conditions, or the assumptions the claim depends on.

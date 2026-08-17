@@ -1,0 +1,50 @@
+# API Commons — Benefits as an apis.yml property, illustrative example
+#
+# The envelope form, split by audience. That split is the useful move: the same API
+# benefits a developer and a buyer for different reasons, and collapsing them into one
+# list is why benefits pages read as noise to both.
+
+- name: Benefits — Developers
+  type: Benefits
+  description: What adopting the Example API changes for the team doing the integrating.
+  url: https://example.com/benefits/developers
+  source_date: '2026-08-17'
+  data:
+    - name: Deliver integrations faster
+      description: Ship a customer-requested integration in days rather than quarters.
+      audience: developer
+      category: speed
+      metric: calendar days from integration request to production deployment
+      features:
+        - Integration designer
+    - name: Fewer moving parts to maintain
+      description: Connector upgrades and breaking-change handling are not your problem.
+      audience: developer
+      category: cost
+      metric: engineer-days per quarter spent on integration maintenance
+
+- name: Benefits — Buyers
+  type: Benefits
+  description: What adopting the Example API changes for the person signing the contract.
+  url: https://example.com/benefits/business
+  source_date: '2026-08-17'
+  data:
+    - name: Win more customers
+      description: Stop losing deals to a missing integration.
+      audience: business
+      category: reach
+      metric: deals lost per quarter citing a missing integration
+      evidence_url: https://example.com/case-studies/win-rate
+    - name: Retain more customers
+      description: Customers with two or more live integrations churn less.
+      audience: business
+      category: reach
+      metric: annual churn rate segmented by number of active integrations
+      evidence_url: https://example.com/case-studies/retention
+    - name: Offload integration compliance
+      description: SOC 2 and GDPR obligations for third-party data movement sit with the platform.
+      audience: compliance
+      category: risk
+      note: >-
+        Shared responsibility, not transfer. The data controller obligations stay with
+        you; state which ones actually move before repeating this claim.
